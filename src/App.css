@@ -1,0 +1,9 @@
+main {
+  padding-top: 132px; /* desktop header ~124px + 8px breathing room */
+}
+
+@media (max-width: 900px) {
+  main {
+    padding-top: 124px; /* mobile header ~116px + 8px breathing room */
+  }
+}

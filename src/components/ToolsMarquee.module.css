@@ -1,0 +1,93 @@
+.toolsWrapper {
+    padding: 60px 0;
+    background-color: var(--card-bg);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.title {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.marquee {
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: visible;
+    user-select: none;
+    gap: 2rem;
+    padding: 4px 0;
+    /* mask-image is useful to fade out edges if browser supports it */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marqueeContent {
+    display: flex;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    min-width: 100%;
+    animation: scroll 30s linear infinite;
+}
+
+.toolPill {
+    background-color: var(--bg-color);
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 1.125rem;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.toolLogo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.toolPill:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-blue);
+}
+
+@media (max-width: 768px) {
+    .toolsWrapper {
+        padding: 40px 0;
+    }
+}
+
+.marqueeContent:hover {
+    animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marqueeContent {
+        animation-duration: 120s;
+    }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-50% - 1rem));
+    }
+}
