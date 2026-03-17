@@ -100,14 +100,7 @@
     animation: fadeIn 0.2s ease;
 }
 
-/* Desktop only: show on hover or keyboard focus */
-@media (min-width: 901px) {
-    .dropdown:hover .dropdownContent,
-    .dropdown:focus-within .dropdownContent {
-        display: block;
-        animation: fadeIn 0.2s ease;
-    }
-}
+/* Dropdown visibility controlled entirely by JS (.dropdownOpen class) */
 
 @keyframes fadeIn {
     from {

@@ -59,11 +59,11 @@
 
 .headline {
     font-size: 2.25rem;
-    font-family: var(--font-sans);
-    font-weight: 400;
+    font-family: var(--font-serif);
+    font-weight: 600;
     line-height: 1.4;
     margin-bottom: 2.5rem;
-    color: #4a4a4a;
+    color: var(--text-color);
 }
 
 .highlight {
@@ -132,14 +132,18 @@
     border-radius: 100px;
     font-size: 1rem;
     font-family: var(--font-sans);
-    outline: none;
     transition: border-color 0.2s ease;
 }
 
-.emailInput:focus,
-.emailInput:focus-visible {
+.emailInput:focus {
     border-color: var(--accent-orange);
     outline: none;
+}
+
+.emailInput:focus-visible {
+    border-color: var(--accent-orange);
+    outline: 2px solid var(--accent-orange);
+    outline-offset: 2px;
 }
 
 .primaryBtn {
@@ -160,6 +164,11 @@
 .primaryBtn:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(253, 151, 109, 0.3);
+}
+
+.primaryBtn:active {
+    transform: translateY(0);
+    opacity: 0.9;
 }
 
 .imageWrapper {
@@ -268,6 +277,10 @@
 
 @media (prefers-reduced-motion: reduce) {
     .wave {
+        animation: none;
+    }
+
+    .imageDecor {
         animation: none;
     }
 }

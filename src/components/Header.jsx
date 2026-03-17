@@ -17,6 +17,16 @@ export default function Header() {
     const lastScrollY = useRef(0);
 
     useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (activeDropdown && !e.target.closest(`.${styles.dropdown}`)) {
+                setActiveDropdown(null);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [activeDropdown, setActiveDropdown]);
+
+    useEffect(() => {
         const handleScroll = () => {
             const currentY = window.scrollY;
             if (currentY > lastScrollY.current && currentY > 80) {
@@ -45,10 +55,15 @@ export default function Header() {
                         >Về mình</a>
 
                         {navDropdowns.map((dropdown) => (
-                            <div key={dropdown.key} className={styles.dropdown}>
+                            <div
+                                key={dropdown.key}
+                                className={styles.dropdown}
+                                onMouseEnter={() => { if (window.innerWidth > 900) setActiveDropdown(dropdown.key); }}
+                                onMouseLeave={() => { if (window.innerWidth > 900) setActiveDropdown(null); }}
+                            >
                                 <button
                                     className={styles.dropbtn}
-                                    onClick={() => setActiveDropdown(dropdown.key)}
+                                    onClick={() => setActiveDropdown(activeDropdown === dropdown.key ? null : dropdown.key)}
                                     aria-expanded={activeDropdown === dropdown.key}
                                     aria-haspopup="true"
                                 >

@@ -154,8 +154,11 @@
     padding: 12px 24px;
     font-size: 1.05rem;
     font-family: var(--font-sans);
-    outline: none;
     color: var(--text-color);
+}
+
+.input:focus {
+    outline: none;
 }
 
 .submitBtn {

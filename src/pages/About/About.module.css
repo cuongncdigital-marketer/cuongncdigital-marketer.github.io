@@ -316,6 +316,12 @@
     transform: translateX(4px);
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .imageDecor {
+        animation: none;
+    }
+}
+
 @media (max-width: 600px) {
     .title {
         font-size: 2.5rem;

@@ -3,7 +3,7 @@
 ## Tổng quan dự án
 
 Portfolio website tiếng Việt cho **Cường Nguyễn** — Performance AI Marketer.
-Đây là một **React SPA** nhiều trang, hiện có trang Home và About, và sẽ tiếp tục mở rộng thêm các trang mới.
+Toàn bộ nội dung hiển thị bằng tiếng Việt (kể cả meta tags, OG tags, placeholder).
 
 ## Tech Stack
 
@@ -13,7 +13,7 @@ Portfolio website tiếng Việt cho **Cường Nguyễn** — Performance AI Ma
 | Vite | 8 | Build tool + dev server |
 | Zustand | 5 | State management |
 | CSS Modules | — | Scoped styling (mỗi component có file `.module.css`) |
-| React Icons | 5 | Icon library (Feather + Simple Icons) |
+| React Icons | 5 | Icon library (ưu tiên `react-icons/fi` — Feather Icons) |
 | Vitest | 4 | Unit testing |
 
 ## Cấu trúc thư mục
@@ -40,21 +40,33 @@ public/
 ## Quy ước code
 
 ### Trang mới
-Mỗi trang mới tạo theo pattern `src/pages/<TênTrang>/<TênTrang>.jsx` + `<TênTrang>.module.css`.
-Đăng ký route trong `src/App.jsx`.
+1. Tạo `src/pages/<TênTrang>/<TênTrang>.jsx` + `<TênTrang>.module.css`
+2. Trong `App.jsx`, thêm pathname check:
+   ```js
+   const isXxxPage = window.location.pathname.includes('/xxx') || window.location.hash.includes('#xxx')
+   ```
+3. Thêm vào JSX conditional render (tương tự `isAboutPage` hiện có)
+4. Cập nhật navigation trong `src/data/portfolioData.js`
+
+> Dự án **không dùng React Router** — routing là custom `window.location` check trong App.jsx.
+> `NewsletterCTA` và `ScrollToTop` render trên mọi trang (nằm ngoài khối if/else).
 
 ### Component
 - File: `src/components/<TênComponent>.jsx` + `<TênComponent>.module.css`
 - Dùng CSS Modules, không dùng inline style hay global class
-- Import icon từ `react-icons` (ưu tiên `react-icons/fi` — Feather Icons)
 
 ### State
-- Global state dùng Zustand store tại `src/store/useAppStore.js`
-- Local UI state dùng `useState` trong component
+- Global state: Zustand store tại `src/store/useAppStore.js`
+- Local UI state: `useState` trong component
 
 ### Dữ liệu nội dung
 - Nội dung tĩnh (danh sách tools, cards, videos, resources) đặt trong `src/data/portfolioData.js`
 - Không hardcode dữ liệu dài trực tiếp trong JSX
+
+### Output quality
+- Không sinh comment placeholder (`// ...`, `// TODO`, `/* remaining */`)
+- Không cắt xén code — output đầy đủ, chạy được ngay
+- Không dùng Lorem Ipsum — dùng nội dung tiếng Việt phù hợp context
 
 ### Test
 - Mỗi component/page quan trọng có file test tại `src/__tests__/`
@@ -77,6 +89,22 @@ Các biến CSS global định nghĩa trong `src/index.css`:
 Font: **Playfair Display** (heading) + **Inter** (body) — load từ Google Fonts.
 Responsive breakpoint chính: `768px`.
 
+## Quy tắc UI/CSS
+
+### Animation & Transitions
+- Chỉ animate `transform` và `opacity` (GPU-friendly)
+- Transition mặc định: `200-300ms ease` — không dùng `linear` hay `ease-in-out`
+- Mọi interactive element (button, link, card) phải có hover + active + focus state
+
+### Typography
+- Paragraph max-width: `65ch` để dễ đọc
+- Heading dài: dùng `text-wrap: balance`
+
+### HTML & Accessibility
+- Ưu tiên semantic HTML (`<section>`, `<article>`, `<nav>`) — tránh div lồng div
+- Button phải có visible focus ring
+- Form input phải có label
+
 ## Lệnh thường dùng
 
 ```bash
@@ -84,19 +112,11 @@ npm run dev        # Khởi động dev server
 npm run build      # Build production
 npm run lint       # Chạy ESLint
 npm run test       # Chạy unit tests
-npm run test:ui    # Chạy tests với UI
 npm run preview    # Preview bản build
 ```
 
-## Ngôn ngữ & nội dung
-
-- Toàn bộ nội dung hiển thị bằng **tiếng Việt**
-- Meta tags, OG tags cũng bằng tiếng Việt
-- Khi tạo trang mới, nội dung placeholder dùng tiếng Việt
-
 ## Lưu ý quan trọng
 
-- Routing được xử lý trong `App.jsx` — thêm `<Route>` khi tạo trang mới
-- Navigation dropdown (Services, Resources) được định nghĩa trong `src/data/portfolioData.js` → cập nhật ở đây khi thêm trang
-- Header và Footer là shared components — khi thêm link trang mới, cập nhật cả hai
+- Navigation dropdown (Services, Resources) định nghĩa trong `src/data/portfolioData.js` — cập nhật khi thêm trang
+- Header và Footer là shared components — cập nhật cả hai khi thêm link trang mới
 - ESLint config: unused vars bắt đầu bằng chữ hoa được bỏ qua (cho React component imports)

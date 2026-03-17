@@ -6,6 +6,8 @@
   --accent-yellow: #FDD46B;
   --accent-blue: #5DCDF1;
   --card-bg: #FFFFFF;
+  --text-primary: #1B1624;
+  --text-secondary: #4a4a4a;
 
   --font-serif: 'Playfair Display', serif;
   --font-sans: 'Inter', sans-serif;
@@ -49,6 +51,7 @@ h6 {
   font-family: var(--font-serif);
   line-height: 1.2;
   font-weight: 700;
+  text-wrap: balance;
 }
 
 a {

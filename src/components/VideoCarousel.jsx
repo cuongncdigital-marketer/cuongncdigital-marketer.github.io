@@ -20,7 +20,7 @@ function VideoThumbnail({ video }) {
         <button
             onClick={() => setPlaying(true)}
             aria-label={`Phát video: ${video.title}`}
-            style={{ all: 'unset', position: 'absolute', inset: 0, width: '100%', height: '100%', cursor: 'pointer' }}
+            className={styles.playBtn}
         >
             <img
                 src={`https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg`}
