@@ -36,7 +36,10 @@ const About = () => {
                                 <h4 className={styles.timelineYear}>Khởi đầu</h4>
                                 <h5 className={styles.timelineStep}>Health & Education Marketing</h5>
                                 <p>
-                                    Bắt đầu sự nghiệp với nền tảng là một Marketer truyền thống, mình dấn thân vào lĩnh vực <strong>Health & Education</strong> - hai mảng đòi hỏi sự thấu hiểu tâm lý khách hàng sâu sắc và tính nhân văn cao. Thời điểm này, mình dành hàng nghìn giờ để tối ưu quảng cáo (Ads) một cách thủ công, liên tục thử nghiệm thông điệp và theo dõi sát sao từng biến động nhỏ nhất của chiến dịch để đảm bảo tỷ lệ chuyển đổi tốt nhất.
+                                    Bắt đầu sự nghiệp với nền tảng là một Marketer truyền thống, mình dấn thân vào lĩnh vực <strong>Health & Education</strong> - hai mảng đòi hỏi sự thấu hiểu tâm lý khách hàng sâu sắc và tính nhân văn cao.
+                                </p>
+                                <p>
+                                    Thời điểm này, mình dành hàng nghìn giờ để tối ưu quảng cáo (Ads) một cách thủ công, liên tục thử nghiệm thông điệp và theo dõi sát sao từng biến động nhỏ nhất của chiến dịch để đảm bảo tỷ lệ chuyển đổi tốt nhất.
                                 </p>
                             </div>
                         </div>
@@ -46,7 +49,10 @@ const About = () => {
                                 <h4 className={styles.timelineYear}>Bước ngoặt</h4>
                                 <h5 className={styles.timelineStep}>Công nghệ & Tối ưu hoá</h5>
                                 <p>
-                                    Khi thị trường cạnh tranh ngày càng khốc liệt và chi phí quảng cáo tăng cao, mình nhận ra làm việc chăm chỉ bằng tay là chưa đủ. Mình bắt đầu tìm hiểu và đưa các công cụ <strong>AI, Automation</strong> vào quy trình làm việc. Từ việc phân tích dữ liệu lượng lớn đến tự động hóa quy trình <strong>A/B testing</strong>, công nghệ đã giúp mình giải phóng thời gian khỏi những tác vụ lặp đi lặp lại để tập trung vào chiến lược và kể chuyện (storytelling).
+                                    Khi thị trường cạnh tranh ngày càng khốc liệt và chi phí quảng cáo tăng cao, mình nhận ra làm việc chăm chỉ bằng tay là chưa đủ.
+                                </p>
+                                <p>
+                                    Mình bắt đầu tìm hiểu và đưa các công cụ <strong>AI, Automation</strong> vào quy trình làm việc. Từ việc phân tích dữ liệu lượng lớn đến tự động hóa quy trình <strong>A/B testing</strong>, công nghệ giúp mình giải phóng thời gian khỏi những tác vụ lặp đi lặp lại để tập trung vào chiến lược và kể chuyện (storytelling).
                                 </p>
                             </div>
                         </div>
@@ -56,7 +62,10 @@ const About = () => {
                                 <h4 className={styles.timelineYear}>Hiện tại</h4>
                                 <h5 className={styles.timelineStep}>Performance AI Marketer</h5>
                                 <p>
-                                    Hiện tại, mình là một <strong>Performance AI Marketer</strong>. Mình không chỉ chạy ads, mà còn xây dựng các <strong>hệ thống tăng trưởng (growth systems) tự động hóa</strong> với quy mô lớn (scale up). Sự kết hợp giữa tư duy data-driven, thấu hiểu con người và giải pháp AI giúp mình mang lại hiệu suất tối đa cho các dự án mà vẫn giữ được giá trị cốt lõi của thương hiệu.
+                                    Hiện tại, mình là một <strong>Performance AI Marketer</strong>. Mình không chỉ chạy ads, mà còn xây dựng các <strong>hệ thống tăng trưởng (growth systems) tự động hóa</strong> với quy mô lớn (scale up).
+                                </p>
+                                <p>
+                                    Sự kết hợp giữa tư duy data-driven, thấu hiểu con người và giải pháp AI giúp mình mang lại hiệu suất tối đa cho các dự án mà vẫn giữ được giá trị cốt lõi của thương hiệu.
                                 </p>
                             </div>
                         </div>

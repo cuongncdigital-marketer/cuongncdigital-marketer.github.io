@@ -183,7 +183,8 @@
 
     .headerInner {
         padding: 12px 16px;
-        position: static; /* nav positions relative to .header → full viewport width */
+        position: static;
+        /* nav positions relative to .header → full viewport width */
     }
 
     .hamburger {
@@ -215,6 +216,8 @@
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
         transition: clip-path 0.3s ease-in-out;
         gap: 1.5rem;
+        z-index: 105;
+        /* Đảm bảo menu mobile trồi lên trên Hero */
     }
 
     .navOpen {
@@ -232,6 +235,11 @@
         padding-left: 1rem;
         border-left: 2px solid var(--accent-yellow);
         margin-top: 1rem;
+    }
+
+    .dropdownContent.dropdownOpen {
+        display: block;
+        /* Phải khai báo hiển thị khi state open */
     }
 
     /* Mobile: only JS .dropdownOpen class controls visibility — no hover/focus-within */

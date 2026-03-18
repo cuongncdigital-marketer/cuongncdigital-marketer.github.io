@@ -1,6 +1,7 @@
 import styles from './Footer.module.css';
 import { footerLinks } from '../data/portfolioData';
 import { SiYoutube, SiFacebook, SiTiktok, SiSubstack } from 'react-icons/si';
+import useAppStore from '../store/useAppStore';
 
 const socials = [
     { label: 'YouTube', icon: SiYoutube, href: '#' },
@@ -10,6 +11,8 @@ const socials = [
 ];
 
 export default function Footer() {
+    const openServiceModal = useAppStore((s) => s.openServiceModal);
+
     return (
         <footer className={styles.footer}>
             <div className={`container ${styles.footerInner}`}>
@@ -32,9 +35,19 @@ export default function Footer() {
                     {footerLinks.map((group) => (
                         <div key={group.heading} className={styles.linkGroup}>
                             <h4>{group.heading}</h4>
-                            {group.items.map((item) => (
-                                <a key={item.label} href={item.href}>{item.label}</a>
-                            ))}
+                            {group.items.map((item) => {
+                                const handleClick = (e) => {
+                                    if (item.href === '#' && group.heading === 'Dịch vụ') {
+                                        e.preventDefault();
+                                        openServiceModal(item.slug);
+                                    }
+                                };
+                                return (
+                                    <a key={item.label} href={item.href} onClick={handleClick}>
+                                        {item.label}
+                                    </a>
+                                );
+                            })}
                         </div>
                     ))}
                 </div>

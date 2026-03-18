@@ -10,6 +10,7 @@ export default function Header() {
     const toggleMobileMenu = useAppStore((s) => s.toggleMobileMenu);
     const closeMobileMenu = useAppStore((s) => s.closeMobileMenu);
     const setActiveDropdown = useAppStore((s) => s.setActiveDropdown);
+    const openServiceModal = useAppStore((s) => s.openServiceModal);
 
     const isAboutPage = window.location.pathname.includes('/about');
 
@@ -73,11 +74,21 @@ export default function Header() {
                                     className={`${styles.dropdownContent} ${activeDropdown === dropdown.key ? styles.dropdownOpen : ''}`}
                                     data-testid={`dropdown-${dropdown.key}`}
                                 >
-                                    {dropdown.items.map((item) => (
-                                        <a key={item.label} href={item.href} onClick={closeMobileMenu}>
-                                            {item.label}
-                                        </a>
-                                    ))}
+                                    {dropdown.items.map((item) => {
+                                        const handleClick = (e) => {
+                                            if (item.href === '#' && dropdown.key === 'services') {
+                                                e.preventDefault();
+                                                openServiceModal(item.slug);
+                                            } else {
+                                                closeMobileMenu();
+                                            }
+                                        };
+                                        return (
+                                            <a key={item.label} href={item.href} onClick={handleClick}>
+                                                {item.label}
+                                            </a>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         ))}

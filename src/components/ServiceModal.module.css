@@ -1,0 +1,397 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(27, 22, 36, 0.95);
+  /* nền tối có blur */
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.scrollArea {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+.closeBtn {
+  position: fixed;
+  top: 32px;
+  right: calc(50% - 450px - 64px);
+  background: #ffffff;
+  color: #1B1624;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border: none;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  z-index: 10001;
+}
+
+@media (max-width: 1080px) {
+  .closeBtn {
+    right: 32px;
+  }
+}
+
+.closeBtn:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.1) rotate(90deg);
+}
+
+.closeBtn:focus-visible {
+  outline: 3px solid var(--accent-purple, #C9B1FB);
+  outline-offset: 3px;
+}
+
+.modalBody {
+  background-color: var(--card-bg, #ffffff);
+  width: 100%;
+  max-width: 900px;
+  border-radius: var(--radius-lg, 20px);
+  padding: 60px;
+  margin-bottom: 80px;
+  /* Khoảng cách để vuốt hết card */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transform: translateY(40px);
+  opacity: 0;
+  animation: slideUp 0.4s ease forwards 0.1s;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Xóa phần Staggered entry animation */
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.headerIcon {
+  font-size: 4rem;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--text-color, #1B1624);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary, #4a4a4a);
+  max-width: 720px;
+  margin: 0 auto 30px;
+  line-height: 1.8;
+}
+
+.tags {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background-color: var(--bg-color, #FAFAFA);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-color, #1B1624);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.content > * + * {
+  margin-top: 40px;
+}
+
+.textBlock {
+  font-size: 1.25rem;
+  line-height: 1.85;
+  color: var(--text-secondary, #4a4a4a);
+  width: 100%;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.textBlock p + p {
+  margin-top: 14px;
+}
+
+.bulletList {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+
+.bulletList li {
+  position: relative;
+  padding-left: 1.25em;
+  margin-bottom: 8px;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+.bulletList li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--accent-orange);
+  font-weight: 700;
+}
+
+.headingBlock {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text-color, #1B1624);
+  text-align: left;
+  max-width: 720px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: -0.01em;
+}
+
+.imageBlock {
+  width: 100%;
+  border-radius: var(--radius-lg, 20px);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  /* Drop shadow mềm và sâu hơn */
+  transition: transform 0.3s ease;
+}
+
+.imageBlock:hover {
+  transform: translateY(-4px);
+}
+
+.imageBlock img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* Image Grid */
+.imageGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+.imageGrid img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg, 20px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  /* Dịu bóng đổ xuống */
+  object-fit: cover;
+  aspect-ratio: 4/3;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.imageGrid img:hover {
+  transform: scale(1.02);
+}
+
+/* Video Block */
+.videoBlock {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius-md, 12px);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background-color: #000;
+  position: relative;
+}
+
+.videoBlock iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.playBtn {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  display: block;
+}
+
+.playBtn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.playBtn:hover img {
+  transform: scale(1.03);
+}
+
+.playIcon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* CTA Container */
+.ctaContainer {
+  margin-top: 80px;
+  padding-top: 60px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.ctaTitle {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  color: var(--text-color, #1B1624);
+}
+
+.ctaText {
+  font-size: 1.15rem;
+  color: var(--text-secondary, #4a4a4a);
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButton {
+  display: inline-block;
+  background-color: var(--text-color, #1B1624);
+  color: #fff;
+  padding: 16px 40px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .scrollArea {
+    padding: 16px;
+  }
+
+  .modalBody {
+    padding: 24px 20px;
+    margin-top: 16px;
+    /* Rút gọn tối đa khoảng cách bên trên */
+    margin-bottom: 40px;
+  }
+
+  .header {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+  }
+
+  .title {
+    font-size: 2.25rem;
+    margin-bottom: 12px;
+  }
+
+  .content > * + * {
+    margin-top: 24px;
+  }
+
+  .headingBlock {
+    font-size: 1.5rem;
+  }
+
+  .textBlock {
+    font-size: 1.05rem;
+    /* Ở mobile chữ hơi nhỏ lại xíu cho dễ đọc 1 lèo */
+  }
+
+  .closeBtn {
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+    background: #ffffff;
+    color: #1B1624;
+    border: none;
+    backdrop-filter: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .imageGrid {
+    grid-template-columns: 1fr;
+    /* Tràn nguyên khối trên mobile */
+    gap: 16px;
+  }
+
+  .ctaContainer {
+    margin-top: 48px;
+    padding-top: 40px;
+  }
+
+  .ctaTitle {
+    font-size: 1.75rem;
+  }
+}
+

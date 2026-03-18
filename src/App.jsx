@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import './App.css'
 import Header from './components/Header'
 import Hero from './components/Hero'
@@ -8,7 +8,9 @@ import Projects from './components/Projects'
 import NewsletterCTA from './components/NewsletterCTA'
 import Footer from './components/Footer'
 import useAppStore from './store/useAppStore'
-import About from './pages/About/About'
+
+const About = lazy(() => import('./pages/About/About'))
+const ServiceModal = lazy(() => import('./components/ServiceModal'))
 
 function ScrollToTop() {
   const [visible, setVisible] = useState(false)
@@ -53,6 +55,11 @@ function App() {
   const mobileMenuOpen = useAppStore((s) => s.mobileMenuOpen)
   const closeMobileMenu = useAppStore((s) => s.closeMobileMenu)
 
+  // Global Layout Service Modal
+  const globalServiceModalOpen = useAppStore((s) => s.globalServiceModalOpen)
+  const globalSelectedService = useAppStore((s) => s.globalSelectedService)
+  const closeServiceModal = useAppStore((s) => s.closeServiceModal)
+
   // Simple simple routing logic (For preview only)
   const isAboutPage = window.location.pathname.includes('/about') || window.location.hash.includes('#about');
 
@@ -72,7 +79,9 @@ function App() {
       )}
       <main>
         {isAboutPage ? (
-          <About />
+          <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
+            <About />
+          </Suspense>
         ) : (
           <>
             <Hero />
@@ -84,6 +93,17 @@ function App() {
         <NewsletterCTA />
       </main>
       <Footer />
+
+      {globalServiceModalOpen && (
+        <Suspense fallback={null}>
+          <ServiceModal
+            isOpen={globalServiceModalOpen}
+            service={globalSelectedService}
+            onClose={closeServiceModal}
+          />
+        </Suspense>
+      )}
+
       <ScrollToTop />
     </>
   )

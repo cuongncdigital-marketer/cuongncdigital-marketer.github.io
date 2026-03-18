@@ -12,7 +12,7 @@ export default function Hero() {
                 </h2>
                 <div className={styles.actions}>
                     <div>
-                        <p className={styles.giftBadge}>🎁 Miễn phí — AI Marketing Toolkit</p>
+                        <p className={styles.giftBadge}>🎁 Miễn phí: AI Marketing Toolkit</p>
                         <p className={styles.trustNote}>Đã có <strong>10,000+</strong> marketers nhận.</p>
                         <p className={styles.giftText}>Nhận ngay bộ <strong>prompt, checklist & template</strong> mình dùng để scale campaigns.</p>
                         <form className={styles.emailForm} onSubmit={(e) => e.preventDefault()}>
@@ -34,7 +34,11 @@ export default function Hero() {
                     src="/images/hero.jpg"
                     alt="Cường Nguyễn - Performance AI Marketer"
                     className={styles.image}
-                    loading="lazy"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                    width="340"
+                    height="340"
                 />
             </div>
         </section>

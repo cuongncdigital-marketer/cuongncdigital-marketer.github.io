@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { videoCards as initialVideoCards } from '../data/portfolioData';
+import { videoCards as initialVideoCards, expertiseCards } from '../data/portfolioData';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -7,6 +7,10 @@ const useAppStore = create((set, get) => ({
   // ─── UI State ──────────────────────────────────────────────────────────────
   mobileMenuOpen: false,
   activeDropdown: null, // 'services' | 'resources' | null
+
+  // ─── Global Service Modal State ────────────────────────────────────────────
+  globalServiceModalOpen: false,
+  globalSelectedService: null,
 
   // ─── Data ──────────────────────────────────────────────────────────────────
   videoCards: initialVideoCards,
@@ -27,6 +31,19 @@ const useAppStore = create((set, get) => ({
     set((state) => ({
       activeDropdown: state.activeDropdown === name ? null : name,
     })),
+
+  openServiceModal: (slug) => {
+    const matchedService = expertiseCards.find(card => card.slug === slug) || expertiseCards[0];
+    set({
+      globalServiceModalOpen: true,
+      globalSelectedService: matchedService,
+      mobileMenuOpen: false,
+      activeDropdown: null,
+    });
+  },
+
+  closeServiceModal: () =>
+    set({ globalServiceModalOpen: false, globalSelectedService: null }),
 
   // ─── Newsletter Actions ────────────────────────────────────────────────────
   setNewsletterEmail: (email) =>
