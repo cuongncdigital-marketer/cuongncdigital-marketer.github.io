@@ -172,24 +172,19 @@ export const expertiseCards = [
 // ─── Video Cards ──────────────────────────────────────────────────────────────
 export const videoCards = [
   {
-    title: 'Cách Mình Dùng AI Để Scale Ads',
-    videoId: 'xbEsoHqeFMI',
-    href: 'https://www.youtube.com/watch?v=xbEsoHqeFMI',
+    title: 'Phân Tích Video bằng AI Skill cho Người Mới (Antigravity + Gemini)',
+    videoId: 'J5U5luQg2sw',
+    href: 'https://www.youtube.com/watch?v=J5U5luQg2sw',
   },
   {
-    title: 'Setup Tracking 2026 Của Mình',
-    videoId: 'vwGLktEQgjA',
-    href: 'https://www.youtube.com/watch?v=vwGLktEQgjA',
+    title: 'Kiến Thức Nhập Môn về AI cho Người Mới',
+    videoId: 'vJHud2HT8kE',
+    href: 'https://www.youtube.com/watch?v=vJHud2HT8kE',
   },
   {
-    title: 'Masterclass A/B Testing',
-    videoId: 'WBPm-Qb7RDc',
-    href: 'https://www.youtube.com/watch?v=WBPm-Qb7RDc',
-  },
-  {
-    title: 'Quy Trình Tạo Content AI Của Mình',
-    videoId: 'jsG1MREASXE',
-    href: 'https://www.youtube.com/watch?v=jsG1MREASXE',
+    title: 'Hướng Dẫn Setup AI Marketing Team cho Người Mới (Claude Code)',
+    videoId: 'hmq0WuD2eTE',
+    href: 'https://www.youtube.com/watch?v=hmq0WuD2eTE',
   },
 ];
 
