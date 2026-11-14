@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import styles from './Header.module.css';
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 import useAppStore from '../store/useAppStore';
+import useIsAboutPage from '../hooks/useIsAboutPage';
 import { navDropdowns } from '../data/portfolioData';
 
 export default function Header() {
@@ -12,7 +13,7 @@ export default function Header() {
     const setActiveDropdown = useAppStore((s) => s.setActiveDropdown);
     const openServiceModal = useAppStore((s) => s.openServiceModal);
 
-    const isAboutPage = window.location.pathname.includes('/about') || window.location.hash.includes('#about');
+    const isAboutPage = useIsAboutPage();
 
     const headerRef = useRef(null);
     const lastScrollY = useRef(0);

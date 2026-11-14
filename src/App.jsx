@@ -8,6 +8,7 @@ import Projects from './components/Projects'
 import NewsletterCTA from './components/NewsletterCTA'
 import Footer from './components/Footer'
 import useAppStore from './store/useAppStore'
+import useIsAboutPage from './hooks/useIsAboutPage'
 
 const About = lazy(() => import('./pages/About/About'))
 const ServiceModal = lazy(() => import('./components/ServiceModal'))
@@ -60,8 +61,7 @@ function App() {
   const globalSelectedService = useAppStore((s) => s.globalSelectedService)
   const closeServiceModal = useAppStore((s) => s.closeServiceModal)
 
-  // Simple simple routing logic (For preview only)
-  const isAboutPage = window.location.pathname.includes('/about') || window.location.hash.includes('#about');
+  const isAboutPage = useIsAboutPage()
 
   return (
     <>
