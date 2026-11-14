@@ -158,7 +158,7 @@ export default function ServiceModal({ isOpen, onClose, service }) {
           <div className={styles.ctaContainer}>
             <h3 className={styles.ctaTitle}>Sẵn sàng bứt phá doanh thu?</h3>
             <p className={styles.ctaText}>Hãy để chúng tôi giúp bạn xây dựng hệ thống Performance Marketing tự động ngay hôm nay.</p>
-            <a href="#contact" className={styles.ctaButton} onClick={onClose}>Bắt đầu hợp tác</a>
+            <a href="/#contact" className={styles.ctaButton} onClick={onClose}>Bắt đầu hợp tác</a>
           </div>
         </div>
       </div>

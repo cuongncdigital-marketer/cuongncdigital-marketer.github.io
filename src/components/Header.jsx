@@ -12,7 +12,7 @@ export default function Header() {
     const setActiveDropdown = useAppStore((s) => s.setActiveDropdown);
     const openServiceModal = useAppStore((s) => s.openServiceModal);
 
-    const isAboutPage = window.location.pathname.includes('/about');
+    const isAboutPage = window.location.pathname.includes('/about') || window.location.hash.includes('#about');
 
     const headerRef = useRef(null);
     const lastScrollY = useRef(0);
@@ -50,7 +50,7 @@ export default function Header() {
                     {/* Desktop + Mobile Nav */}
                     <nav className={`${styles.nav} ${mobileMenuOpen ? styles.navOpen : ''}`}>
                         <a
-                            href="/about"
+                            href="/#about"
                             className={`${styles.navLink} ${isAboutPage ? styles.navActive : ''}`}
                             onClick={closeMobileMenu}
                         >Về mình</a>
