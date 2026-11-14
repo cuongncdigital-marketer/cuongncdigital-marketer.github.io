@@ -14,15 +14,15 @@ beforeEach(() => {
 });
 
 describe('NewsletterCTA — rendering', () => {
-    it('renders the email input and subscribe button', () => {
+    it('hiển thị ô nhập email và nút đăng ký', () => {
         render(<NewsletterCTA />);
-        expect(screen.getByRole('textbox', { name: /email address/i })).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: /subscribe/i })).toBeInTheDocument();
+        expect(screen.getByRole('textbox', { name: /địa chỉ email/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /đăng ký/i })).toBeInTheDocument();
     });
 
     it('renders the disclaimer text', () => {
         render(<NewsletterCTA />);
-        expect(screen.getByText(/no spam/i)).toBeInTheDocument();
+        expect(screen.getByText(/huỷ đăng ký bất cứ lúc nào/i)).toBeInTheDocument();
     });
 });
 
@@ -30,29 +30,29 @@ describe('NewsletterCTA — validation', () => {
     it('shows error when submitting with empty email', async () => {
         const user = userEvent.setup();
         render(<NewsletterCTA />);
-        await user.click(screen.getByRole('button', { name: /subscribe/i }));
-        expect(await screen.findByRole('alert')).toHaveTextContent('Please enter your email.');
+        await user.click(screen.getByRole('button', { name: /đăng ký/i }));
+        expect(await screen.findByRole('alert')).toHaveTextContent('Vui lòng nhập email của bạn.');
     });
 
     it('shows error when submitting an invalid email', async () => {
         const user = userEvent.setup();
         render(<NewsletterCTA />);
-        await user.type(screen.getByRole('textbox', { name: /email address/i }), 'notvalid');
-        await user.click(screen.getByRole('button', { name: /subscribe/i }));
-        expect(await screen.findByRole('alert')).toHaveTextContent('Please enter a valid email.');
+        await user.type(screen.getByRole('textbox', { name: /địa chỉ email/i }), 'notvalid');
+        await user.click(screen.getByRole('button', { name: /đăng ký/i }));
+        expect(await screen.findByRole('alert')).toHaveTextContent('Email chưa hợp lệ, vui lòng kiểm tra lại.');
     });
 
     it('shows success message with a valid email', async () => {
         const user = userEvent.setup();
         render(<NewsletterCTA />);
-        await user.type(screen.getByRole('textbox', { name: /email address/i }), 'user@example.com');
-        await user.click(screen.getByRole('button', { name: /subscribe/i }));
-        expect(await screen.findByRole('status')).toHaveTextContent("You're in!");
+        await user.type(screen.getByRole('textbox', { name: /địa chỉ email/i }), 'user@example.com');
+        await user.click(screen.getByRole('button', { name: /đăng ký/i }));
+        expect(await screen.findByRole('status')).toHaveTextContent('Đã đăng ký!');
     });
 
     it('disables button while loading', async () => {
         useAppStore.setState({ newsletterStatus: 'loading' });
         render(<NewsletterCTA />);
-        expect(screen.getByRole('button', { name: /subscribing/i })).toBeDisabled();
+        expect(screen.getByRole('button', { name: /đang gửi/i })).toBeDisabled();
     });
 });

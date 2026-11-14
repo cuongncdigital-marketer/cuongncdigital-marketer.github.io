@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react'
+import { resolveRoute } from '../routes'
 
-const checkAboutPage = () =>
-  window.location.pathname.includes('/about') || window.location.hash.includes('#about')
-
-export default function useIsAboutPage() {
-  const [isAboutPage, setIsAboutPage] = useState(checkAboutPage)
+export default function useRoute() {
+  const [route, setRoute] = useState(() => resolveRoute())
 
   useEffect(() => {
     const onRouteChange = () => {
-      const next = checkAboutPage()
-      setIsAboutPage((prev) => {
-        if (prev !== next) window.scrollTo({ top: 0 })
+      const next = resolveRoute()
+      setRoute((prev) => {
+        if (prev?.key !== next?.key) window.scrollTo({ top: 0 })
         return next
       })
     }
@@ -22,5 +20,5 @@ export default function useIsAboutPage() {
     }
   }, [])
 
-  return isAboutPage
+  return route
 }

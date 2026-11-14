@@ -20,8 +20,8 @@ describe('Header — rendering', () => {
 
     it('renders nav dropdowns from data', () => {
         render(<Header />);
-        expect(screen.getByText('Services')).toBeInTheDocument();
-        expect(screen.getByText('Resources')).toBeInTheDocument();
+        expect(screen.getByText('Dịch vụ')).toBeInTheDocument();
+        expect(screen.getByText('Tài liệu')).toBeInTheDocument();
     });
 });
 
@@ -58,18 +58,34 @@ describe('Header — dropdowns', () => {
     it('clicking Services button opens the Services dropdown', async () => {
         const user = userEvent.setup();
         render(<Header />);
-        const servicesBtn = screen.getByRole('button', { name: /services/i });
+        const servicesBtn = screen.getByRole('button', { name: /dịch vụ/i });
         await user.click(servicesBtn);
         expect(useAppStore.getState().activeDropdown).toBe('services');
         expect(screen.getByText('AI Marketing')).toBeVisible();
     });
 
-    it('clicking Services button again closes it', async () => {
+    it('desktop: bấm nút khi dropdown đã mở do hover thì không bị đóng', async () => {
         const user = userEvent.setup();
         render(<Header />);
-        const servicesBtn = screen.getByRole('button', { name: /services/i });
+        const servicesBtn = screen.getByRole('button', { name: /dịch vụ/i });
         await user.click(servicesBtn);
         await user.click(servicesBtn);
-        expect(useAppStore.getState().activeDropdown).toBeNull();
+        expect(useAppStore.getState().activeDropdown).toBe('services');
+    });
+
+    it('mobile: clicking Services button again closes it', async () => {
+        const originalWidth = window.innerWidth;
+        window.innerWidth = 500;
+        try {
+            const user = userEvent.setup();
+            render(<Header />);
+            const servicesBtn = screen.getByRole('button', { name: /dịch vụ/i });
+            await user.click(servicesBtn);
+            expect(useAppStore.getState().activeDropdown).toBe('services');
+            await user.click(servicesBtn);
+            expect(useAppStore.getState().activeDropdown).toBeNull();
+        } finally {
+            window.innerWidth = originalWidth;
+        }
     });
 });

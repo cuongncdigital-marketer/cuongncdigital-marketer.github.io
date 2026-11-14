@@ -53,12 +53,12 @@ const useAppStore = create((set, get) => ({
     const { newsletterEmail } = get();
 
     if (!newsletterEmail.trim()) {
-      set({ newsletterError: 'Please enter your email.' });
+      set({ newsletterError: 'Vui lòng nhập email của bạn.' });
       return;
     }
 
     if (!EMAIL_REGEX.test(newsletterEmail)) {
-      set({ newsletterError: 'Please enter a valid email.' });
+      set({ newsletterError: 'Email chưa hợp lệ, vui lòng kiểm tra lại.' });
       return;
     }
 

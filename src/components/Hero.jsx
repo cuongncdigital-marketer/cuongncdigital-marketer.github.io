@@ -31,7 +31,7 @@ export default function Hero() {
             <div className={styles.imageWrapper}>
                 <div className={styles.imageDecor}></div>
                 <img
-                    src="/images/hero.jpg"
+                    src="/images/hero.webp"
                     alt="Cường Nguyễn - Performance AI Marketer"
                     className={styles.image}
                     loading="eager"

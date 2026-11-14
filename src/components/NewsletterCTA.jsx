@@ -45,7 +45,7 @@ export default function NewsletterCTA() {
                                     className={`${styles.input} ${newsletterError ? styles.inputError : ''}`}
                                     value={newsletterEmail}
                                     onChange={(e) => setNewsletterEmail(e.target.value)}
-                                    aria-label="Email address"
+                                    aria-label="Địa chỉ email"
                                 />
                                 <button
                                     type="submit"

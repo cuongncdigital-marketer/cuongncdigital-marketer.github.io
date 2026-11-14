@@ -69,11 +69,16 @@ describe('ServiceModal — block rendering', () => {
     gridUrls.forEach((url) => expect(srcs).toContain(url));
   });
 
-  it('render video block như iframe', () => {
+  it('render video block dạng thumbnail, chỉ tải iframe sau khi bấm phát', async () => {
+    const user = userEvent.setup();
     render(<ServiceModal isOpen={true} service={mockService} onClose={() => {}} />);
+    expect(document.querySelector('iframe')).toBeNull();
+
+    await user.click(screen.getByRole('button', { name: 'Phát video' }));
+
     const iframe = document.querySelector('iframe');
     expect(iframe).not.toBeNull();
-    expect(iframe.getAttribute('src')).toBe('https://www.youtube.com/embed/test123');
+    expect(iframe.getAttribute('src')).toBe('https://www.youtube.com/embed/test123?autoplay=1');
   });
 });
 

@@ -20,6 +20,10 @@ const mockVideoCards = [
     },
 ];
 
+// Trang About còn có link CTA (mailto, newsletter), nên chỉ đếm các link tới video
+const getVideoLinks = () =>
+    screen.queryAllByRole('link').filter((link) => link.getAttribute('href')?.includes('youtube.com'));
+
 beforeEach(() => {
     useAppStore.setState({ videoCards: mockVideoCards });
 });
@@ -68,8 +72,7 @@ describe('About — video cards (store)', () => {
 
     it('renders the correct number of video cards from store', () => {
         render(<About />);
-        const cards = screen.getAllByRole('link');
-        expect(cards).toHaveLength(mockVideoCards.length);
+        expect(getVideoLinks()).toHaveLength(mockVideoCards.length);
     });
 
     it('renders each video title from store', () => {
@@ -80,7 +83,7 @@ describe('About — video cards (store)', () => {
 
     it('each card links to the correct href', () => {
         render(<About />);
-        const links = screen.getAllByRole('link');
+        const links = getVideoLinks();
         expect(links[0]).toHaveAttribute('href', mockVideoCards[0].href);
         expect(links[1]).toHaveAttribute('href', mockVideoCards[1].href);
     });
@@ -88,6 +91,6 @@ describe('About — video cards (store)', () => {
     it('renders correct card count when store has 0 videos', () => {
         useAppStore.setState({ videoCards: [] });
         render(<About />);
-        expect(screen.queryAllByRole('link')).toHaveLength(0);
+        expect(getVideoLinks()).toHaveLength(0);
     });
 });

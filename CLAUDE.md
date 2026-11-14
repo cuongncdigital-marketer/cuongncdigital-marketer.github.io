@@ -29,27 +29,30 @@ src/
 ├── data/            # Dữ liệu nội dung (portfolioData.js)
 ├── __tests__/       # Test files (*.test.jsx / *.test.js)
 ├── test/            # Vitest setup (setup.js)
-├── App.jsx          # Root component + routing
+├── routes.js        # Bảng khai báo trang con
+├── hooks/           # Custom hooks (useRoute.js)
+├── App.jsx          # Root component
 └── index.css        # CSS global variables
 public/
 ├── favicon.svg
 ├── icons.svg
-└── images/          # Ảnh tĩnh (hero.jpg, timeline_*.png)
+└── images/          # Ảnh tĩnh, dùng WebP (hero.webp, timeline_*.webp); hero.jpg chỉ cho og:image
 ```
 
 ## Quy ước code
 
 ### Trang mới
 1. Tạo `src/pages/<TênTrang>/<TênTrang>.jsx` + `<TênTrang>.module.css`
-2. Trong `App.jsx`, thêm pathname check:
+2. Trong `src/routes.js`, thêm 1 dòng vào mảng `routes`:
    ```js
-   const isXxxPage = window.location.pathname.includes('/xxx') || window.location.hash.includes('#xxx')
+   { key: 'xxx', component: lazy(() => import('./pages/Xxx/Xxx')) },
    ```
-3. Thêm vào JSX conditional render (tương tự `isAboutPage` hiện có)
+3. Link tới trang dùng dạng hash: `href="/#xxx"` (GitHub Pages không có máy chủ nên không dùng `/xxx`)
 4. Cập nhật navigation trong `src/data/portfolioData.js`
 
-> Dự án **không dùng React Router** — routing là custom `window.location` check trong App.jsx.
+> Dự án **không dùng React Router** — `src/routes.js` là bảng khai báo trang, `src/hooks/useRoute.js` lắng nghe `hashchange`/`popstate`. `App.jsx` tự render component tương ứng, không khớp thì hiển thị trang chủ.
 > `NewsletterCTA` và `ScrollToTop` render trên mọi trang (nằm ngoài khối if/else).
+> Site deploy bằng GitHub Actions (`.github/workflows/deploy.yml`) mỗi lần push lên `main`.
 
 ### Component
 - File: `src/components/<TênComponent>.jsx` + `<TênComponent>.module.css`

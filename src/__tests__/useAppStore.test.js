@@ -67,14 +67,14 @@ describe('useAppStore — submitNewsletter validation', () => {
     it('sets error when email is empty', async () => {
         useAppStore.setState({ newsletterEmail: '' });
         await act(async () => useAppStore.getState().submitNewsletter());
-        expect(useAppStore.getState().newsletterError).toBe('Please enter your email.');
+        expect(useAppStore.getState().newsletterError).toBe('Vui lòng nhập email của bạn.');
         expect(useAppStore.getState().newsletterStatus).toBe('idle');
     });
 
     it('sets error when email is invalid', async () => {
         useAppStore.setState({ newsletterEmail: 'notanemail' });
         await act(async () => useAppStore.getState().submitNewsletter());
-        expect(useAppStore.getState().newsletterError).toBe('Please enter a valid email.');
+        expect(useAppStore.getState().newsletterError).toBe('Email chưa hợp lệ, vui lòng kiểm tra lại.');
         expect(useAppStore.getState().newsletterStatus).toBe('idle');
     });
 

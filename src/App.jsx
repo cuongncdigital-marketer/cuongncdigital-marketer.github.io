@@ -8,9 +8,8 @@ import Projects from './components/Projects'
 import NewsletterCTA from './components/NewsletterCTA'
 import Footer from './components/Footer'
 import useAppStore from './store/useAppStore'
-import useIsAboutPage from './hooks/useIsAboutPage'
+import useRoute from './hooks/useRoute'
 
-const About = lazy(() => import('./pages/About/About'))
 const ServiceModal = lazy(() => import('./components/ServiceModal'))
 
 function ScrollToTop() {
@@ -61,7 +60,8 @@ function App() {
   const globalSelectedService = useAppStore((s) => s.globalSelectedService)
   const closeServiceModal = useAppStore((s) => s.closeServiceModal)
 
-  const isAboutPage = useIsAboutPage()
+  const route = useRoute()
+  const Page = route?.component
 
   return (
     <>
@@ -78,9 +78,9 @@ function App() {
         />
       )}
       <main>
-        {isAboutPage ? (
+        {Page ? (
           <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
-            <About />
+            <Page />
           </Suspense>
         ) : (
           <>

@@ -14,7 +14,7 @@ const About = () => {
                     <div className={styles.squareAvatarWrapper}>
                         <div className={styles.imageDecor}></div>
                         {/* Sử dụng ảnh đại diện thật của bạn tại đây */}
-                        <img src="/images/hero.jpg" alt="Cường Nguyễn - Performance AI Marketer" className={styles.squareAvatar} loading="lazy" />
+                        <img src="/images/hero.webp" alt="Cường Nguyễn - Performance AI Marketer" className={styles.squareAvatar} loading="lazy" />
                     </div>
                     <p className={styles.bio}>
                         Với 7 năm kinh nghiệm trong lĩnh vực <strong>Health & Education</strong>, mình có niềm đam mê mãnh liệt với việc kể chuyện và kết nối qua từng chiến dịch. Từ những ngày đầu chạy quảng cáo thủ công, mình nhận ra sức mạnh của việc thấu hiểu người dùng. Giờ đây, mình kết hợp giữa tư duy Marketing cốt lõi và sức mạnh của <strong>AI/Automation</strong> để tạo ra những <strong>hệ thống tăng trưởng</strong> bền vững và tự động.

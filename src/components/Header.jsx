@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import styles from './Header.module.css';
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 import useAppStore from '../store/useAppStore';
-import useIsAboutPage from '../hooks/useIsAboutPage';
+import useRoute from '../hooks/useRoute';
 import { navDropdowns } from '../data/portfolioData';
 
 export default function Header() {
@@ -13,7 +13,7 @@ export default function Header() {
     const setActiveDropdown = useAppStore((s) => s.setActiveDropdown);
     const openServiceModal = useAppStore((s) => s.openServiceModal);
 
-    const isAboutPage = useIsAboutPage();
+    const isAboutPage = useRoute()?.key === 'about';
 
     const headerRef = useRef(null);
     const lastScrollY = useRef(0);
@@ -65,7 +65,13 @@ export default function Header() {
                             >
                                 <button
                                     className={styles.dropbtn}
-                                    onClick={() => setActiveDropdown(activeDropdown === dropdown.key ? null : dropdown.key)}
+                                    onClick={() => {
+                                        if (window.innerWidth > 900) {
+                                            if (activeDropdown !== dropdown.key) setActiveDropdown(dropdown.key);
+                                            return;
+                                        }
+                                        setActiveDropdown(activeDropdown === dropdown.key ? null : dropdown.key);
+                                    }}
                                     aria-expanded={activeDropdown === dropdown.key}
                                     aria-haspopup="true"
                                 >
